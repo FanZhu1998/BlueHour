@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -216,3 +216,31 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Blue Hour: secrets, dependencies, cache and generated distributions
+*.env
+*.env.*
+.env.*
+!.env.example
+*.secret
+secret.bin
+secret.bin.*
+.envrc
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+credentials.yaml
+credentials.yml
+node_modules/
+dist/
+release/
+artifacts/
+.test-data/
+playwright-report/
+test-results/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*

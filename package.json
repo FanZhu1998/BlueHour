@@ -1,0 +1,84 @@
+{
+  "name": "blue-hour",
+  "productName": "Blue Hour",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.13.0"
+  },
+  "description": "A real Earth observation on your desk.",
+  "author": "Blue Hour",
+  "license": "MIT",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "build": "node scripts/build.mjs",
+    "start": "electron .",
+    "dev": "npm run build && electron .",
+    "package": "npm run build && electron-builder --win nsis --x64",
+    "package:dir": "npm run build && electron-builder --win --x64 --dir",
+    "verify:privacy": "node scripts/verify-privacy.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "1.48.0",
+    "pngjs": "7.0.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "electron": "44.4.5",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "prettier": "3.9.9",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.1"
+  },
+  "build": {
+    "appId": "space.bluehour.desktop",
+    "productName": "Blue Hour",
+    "asar": true,
+    "npmRebuild": false,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/main.cjs",
+      "dist/preload.cjs",
+      "dist/web/**/*",
+      "build/icon.ico",
+      "package.json",
+      "!**/.env*",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Blue Hour Setup ${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Blue Hour",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
